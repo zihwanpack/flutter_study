@@ -7,10 +7,8 @@ import 'package:flutter/material.dart';
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
 
-  @override
   State<Quiz> createState() {
-    return _QuizState();
-  }
+}
 }
 
 class _QuizState extends State<Quiz> {
@@ -20,8 +18,7 @@ class _QuizState extends State<Quiz> {
   void switchScreen() {
     setState(() {
       activeScreen = 'question-screen';
-    });
-  }
+  })
 
   void chooseAnswer(String answer) {
     selectedAnswers.add(answer);
@@ -37,12 +34,8 @@ class _QuizState extends State<Quiz> {
     setState(() {
       selectedAnswers = [];
       activeScreen = 'question-screen';
-    });
-  }
 
-  @override
-  Widget build(BuildContext context) {
-    // final screenWidget =
+    });
     //     activeScreen == 'start-screen'
     //         ? StartScreen(switchScreen)
     //         : const QuestionsScreen();
@@ -57,6 +50,7 @@ class _QuizState extends State<Quiz> {
         onRestart: restartQuiz,
       );
     }
+
     return MaterialApp(
       home: Scaffold(
         body: Container(
@@ -67,9 +61,11 @@ class _QuizState extends State<Quiz> {
               colors: [Colors.purpleAccent, Colors.blueGrey],
             ),
           ),
+
           child: screenWidget,
+
         ),
       ),
-    );
+    );}
   }
 }

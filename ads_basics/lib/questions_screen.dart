@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import 'package:ads_basics/answer_button.dart';
 import 'package:flutter/material.dart';
 import 'package:ads_basics/data/questions.dart';
@@ -7,6 +8,12 @@ class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen({super.key, required this.onSelectAnswer});
 
   final void Function(String answer) onSelectAnswer;
+=======
+import 'package:flutter/material.dart';
+
+class QuestionsScreen extends StatefulWidget {
+  const QuestionsScreen({super.key});
+>>>>>>> f52bb9afb1f5b517081c4f27b0d6e60e234a6574
 
   @override
   State<QuestionsScreen> createState() {
@@ -15,6 +22,7 @@ class QuestionsScreen extends StatefulWidget {
 }
 
 class _QuestionScreenState extends State<QuestionsScreen> {
+<<<<<<< HEAD
   var currentQuestionIndex = 0;
 
   void answeredQuestion(String selectedAnswers) {
@@ -60,5 +68,10 @@ class _QuestionScreenState extends State<QuestionsScreen> {
         ),
       ),
     );
+=======
+  @override
+  Widget build(context) {
+    return Text('질문 스크린');
+>>>>>>> f52bb9afb1f5b517081c4f27b0d6e60e234a6574
   }
 }
