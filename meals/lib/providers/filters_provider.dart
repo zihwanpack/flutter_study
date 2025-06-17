@@ -1,35 +1,45 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:meals/providers/meals_provider.dart';
 
-enum Filter { glutenFree, lactoseFree, vegetarian, vegan }
+enum Filter {
+  glutenFree,
+  lactoseFree,
+  vegetarian,
+  vegan,
+}
 
 class FiltersNotifier extends StateNotifier<Map<Filter, bool>> {
-  // 초기화 하기
   FiltersNotifier()
-    : super({
-        Filter.glutenFree: false,
-        Filter.lactoseFree: false,
-        Filter.vegetarian: false,
-        Filter.vegan: false,
-      });
+      : super({
+          Filter.glutenFree: false,
+          Filter.lactoseFree: false,
+          Filter.vegetarian: false,
+          Filter.vegan: false
+        });
+
   void setFilters(Map<Filter, bool> chosenFilters) {
     state = chosenFilters;
   }
 
   void setFilter(Filter filter, bool isActive) {
-    // state[filter] = isActive 이건 안된다.
-    state = {...state, filter: isActive};
+    // state[filter] = isActive; // not allowed! => mutating state
+    state = {
+      ...state,
+      filter: isActive,
+    };
   }
 }
 
 final filtersProvider =
     StateNotifierProvider<FiltersNotifier, Map<Filter, bool>>(
-      (ref) => FiltersNotifier(),
-    );
+  (ref) => FiltersNotifier(),
+);
 
 final filteredMealsProvider = Provider((ref) {
   final meals = ref.watch(mealsProvider);
   final activeFilters = ref.watch(filtersProvider);
+
   return meals.where((meal) {
     if (activeFilters[Filter.glutenFree]! && !meal.isGlutenFree) {
       return false;
